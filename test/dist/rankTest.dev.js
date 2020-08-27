@@ -1,5 +1,7 @@
 "use strict";
 
+require("regenerator-runtime/runtime");
+
 var rankTest = require('ava');
 
 rankTest('foo', function (t) {

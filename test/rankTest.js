@@ -1,3 +1,5 @@
+import 'regenerator-runtime/runtime'
+
 const rankTest = require('ava');
 
 rankTest('foo', t => {
