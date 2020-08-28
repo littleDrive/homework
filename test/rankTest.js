@@ -1,6 +1,6 @@
 import 'regenerator-runtime/runtime'
 const rankTest = require('ava');
-const { voyageRisk, hasChina } = require('../src/rank');
+const { voyageRisk, hasChina, captainHistoryRisk } = require('../src/rank');
 
 const history = [
   {
@@ -77,3 +77,27 @@ rankTest('hasChina case 6. should return true when hasChina given history no inc
     t.is(result, false);
 });
 
+rankTest('captainHistoryRisk case 7. should return 5 when captainHistoryRisk given history length=4 and history no include china', t => {
+    const voyage = {
+        zone: 'west-indies',
+        length: 9,
+    };
+    const history = [
+        {
+            zone: 'north-africa',
+            profit: 7,
+        },
+        {
+            zone: 'east-indies',
+            profit: 5,
+        }, {
+            zone: 'west-indies',
+            profit: 15,
+        }, {
+            zone: 'china',
+            profit: 2,
+        }
+    ];
+    const result = captainHistoryRisk(voyage, history);
+    t.is(result, 5);
+});
