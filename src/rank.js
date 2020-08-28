@@ -114,8 +114,8 @@ function rating (voyage, history) {
   const _voyageProfitFactor = voyageProfitFactor(voyage, history);
   const _voyageRisk = voyageRisk(voyage);
   const _captainHistoryRisk = captainHistoryRisk(voyage, history);
-  let _rating = getRating(_voyageProfitFactor, _voyageRisk, _captainHistoryRisk);
-  return _rating;
+  return getRating(_voyageProfitFactor, _voyageRisk, _captainHistoryRisk);
+  
 }
 
 module.exports = {
