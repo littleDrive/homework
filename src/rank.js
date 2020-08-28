@@ -68,7 +68,7 @@ const countVoyageProfitFactorbyVoyageZone = (voyage, _voyageProfitFactor) => {
   return _voyageProfitFactor;
 }
 
-const countVoyageProfitFactorByVoyageZoneAndHistoryLengthWhenVoyageZoneIsChinaAndHasHistory = (voyage, history, _voyageProfitFactor) => {
+const countVoyageProfitFactorByVoyageLengthAndHistoryLengthWhenVoyageZoneIsChinaAndHasHistory = (voyage, history, _voyageProfitFactor) => {
   _voyageProfitFactor += 3;
   if (history.length > 10) {
     _voyageProfitFactor += 1;
@@ -82,19 +82,26 @@ const countVoyageProfitFactorByVoyageZoneAndHistoryLengthWhenVoyageZoneIsChinaAn
   return _voyageProfitFactor;
 }
 
+const countVoyageProfitFactorByVoyageLengthAndHistoryLengthWhenVoyageZoneIsNotChinaAndHasHistory = (voyage, history, _voyageProfitFactor) => {
+  if (history.length > 8) {
+    _voyageProfitFactor += 1;
+  }
+  if (voyage.length > 14) {
+    _voyageProfitFactor -= 1;
+  }
+  return _voyageProfitFactor;
+}
+
+
+
 function voyageProfitFactor (voyage, history) {
   let _voyageProfitFactor = 2;
   _voyageProfitFactor = countVoyageProfitFactorbyVoyageZone(voyage, _voyageProfitFactor);
   if (voyage.zone === CHINA && hasChina(history)) {
-    _voyageProfitFactor = countVoyageProfitFactorByVoyageZoneAndHistoryLengthWhenVoyageZoneIsChinaAndHasHistory(voyage, history, _voyageProfitFactor);
+    _voyageProfitFactor = countVoyageProfitFactorByVoyageLengthAndHistoryLengthWhenVoyageZoneIsChinaAndHasHistory(voyage, history, _voyageProfitFactor);
   }
   else {
-    if (history.length > 8) {
-      _voyageProfitFactor += 1;
-    }
-    if (voyage.length > 14) {
-      _voyageProfitFactor -= 1;
-    }
+    _voyageProfitFactor = countVoyageProfitFactorByVoyageLengthAndHistoryLengthWhenVoyageZoneIsNotChinaAndHasHistory(voyage, history, _voyageProfitFactor);
   }
   return _voyageProfitFactor;
 }
