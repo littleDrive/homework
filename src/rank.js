@@ -58,16 +58,19 @@ function captainHistoryRisk (voyage, history) {
   return Math.max(_captainHistoryRisk, 0);
 }
 
-
-
-function voyageProfitFactor (voyage, history) {
-  let _voyageProfitFactor = 2;
+const countVoyageProfitFactorbyVoyageZone = (voyage, _voyageProfitFactor) => {
   if (voyage.zone === CHINA) {
     _voyageProfitFactor += 1;
   }
   if (voyage.zone === EAST_INDIES) {
     _voyageProfitFactor += 1;
   }
+  return _voyageProfitFactor;
+}
+
+function voyageProfitFactor (voyage, history) {
+  let _voyageProfitFactor = 2;
+  _voyageProfitFactor = countVoyageProfitFactorbyVoyageZone(voyage, _voyageProfitFactor);
   if (voyage.zone === CHINA && hasChina(history)) {
     _voyageProfitFactor += 3;
     if (history.length > 10) {
