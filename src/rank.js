@@ -40,10 +40,18 @@ const countCaptainHistoryRiskByHistoryLength = (history, _captainHistoryRisk) =>
   }
   return _captainHistoryRisk;
 }
+
+
+const countCaptainHistoryRiskByHistoryProfit = (history, _captainHistoryRisk) => {
+
+  _captainHistoryRisk += history.filter(v => v.profit < 0).length;
+  return _captainHistoryRisk;
+}
+
 function captainHistoryRisk (voyage, history) {
   let _captainHistoryRisk = 1;
   _captainHistoryRisk = countCaptainHistoryRiskByHistoryLength(history, _captainHistoryRisk);
-  _captainHistoryRisk += history.filter(v => v.profit < 0).length;
+  _captainHistoryRisk = countCaptainHistoryRiskByHistoryProfit(history, _captainHistoryRisk);
   if (voyage.zone === CHINA && hasChina(history)) {
     _captainHistoryRisk -= 2;
   }
