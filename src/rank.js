@@ -58,6 +58,8 @@ function captainHistoryRisk (voyage, history) {
   return Math.max(_captainHistoryRisk, 0);
 }
 
+
+
 function voyageProfitFactor (voyage, history) {
   let result = 2;
   if (voyage.zone === CHINA) {
@@ -89,16 +91,20 @@ function voyageProfitFactor (voyage, history) {
   return result;
 }
 
+const getRating = (_voyageProfitFactor, _voyageRisk, _captainHistoryRisk) => {
+  let _rating = B;
+  if (_voyageProfitFactor * 3 > (_voyageRisk + _captainHistoryRisk * 2)) {
+    _rating = A;
+  }
+  return _rating;
+}
+
 function rating (voyage, history) {
   const _voyageProfitFactor = voyageProfitFactor(voyage, history);
   const _voyageRisk = voyageRisk(voyage);
   const _captainHistoryRisk = captainHistoryRisk(voyage, history);
-  if (_voyageProfitFactor * 3 > (_voyageRisk + _captainHistoryRisk * 2)) {
-    return A;
-  }
-  else {
-    return B;
-  }
+  let _rating = getRating(_voyageProfitFactor, _voyageRisk, _captainHistoryRisk);
+  return _rating;
 }
 
 module.exports = {
