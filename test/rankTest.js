@@ -76,3 +76,12 @@ rankTest('hasChina case 6. should return true when hasChina given history no inc
     const result = hasChina(history);
     t.is(result, false);
 });
+
+rankTest('voyageRisk case 7. should return 4 when voyageRisk given voyage length = 9 and voyage zone=china', t => {
+    const voyage = {
+        zone: 'china',
+        length: 9,
+    };
+    const result = voyageRisk(voyage);
+    t.is(result, 8);
+});
