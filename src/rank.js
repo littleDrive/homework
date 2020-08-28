@@ -97,13 +97,9 @@ const countVoyageProfitFactorByVoyageLengthAndHistoryLengthWhenVoyageZoneIsNotCh
 function voyageProfitFactor (voyage, history) {
   let _voyageProfitFactor = 2;
   _voyageProfitFactor = countVoyageProfitFactorbyVoyageZone(voyage, _voyageProfitFactor);
-  if (voyage.zone === CHINA && hasChina(history)) {
-    _voyageProfitFactor = countVoyageProfitFactorByVoyageLengthAndHistoryLengthWhenVoyageZoneIsChinaAndHasHistory(voyage, history, _voyageProfitFactor);
-  }
-  else {
-    _voyageProfitFactor = countVoyageProfitFactorByVoyageLengthAndHistoryLengthWhenVoyageZoneIsNotChinaAndHasHistory(voyage, history, _voyageProfitFactor);
-  }
-  return _voyageProfitFactor;
+  return (voyage.zone === CHINA && hasChina(history)) ? 
+            countVoyageProfitFactorByVoyageLengthAndHistoryLengthWhenVoyageZoneIsChinaAndHasHistory(voyage, history, _voyageProfitFactor) 
+              : countVoyageProfitFactorByVoyageLengthAndHistoryLengthWhenVoyageZoneIsNotChinaAndHasHistory(voyage, history, _voyageProfitFactor);
 }
 
 const getRating = (_voyageProfitFactor, _voyageRisk, _captainHistoryRisk) => {
