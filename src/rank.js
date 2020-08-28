@@ -3,31 +3,31 @@ const EAST_INDIES = 'east-indies';
 const A ='A';
 const B = 'B';
 
-const countResultByVoyageLength = (voyage, result)  => {
+const countVoyageRiskByVoyageLength = (voyage, _voyageRisk)  => {
   if (voyage.length > 4) {
-    result += 2;
+    _voyageRisk += 2;
   }
   if (voyage.length > 8) {
-    result += voyage.length - 8;
+    _voyageRisk += voyage.length - 8;
   }
-  return result;
+  return _voyageRisk;
 }
 
-const countResultByVoyageZone = (voyage, result) => {
+const countVoyageRiskByVoyageZone = (voyage, _voyageRisk) => {
   if ([
     CHINA,
     EAST_INDIES,
   ].includes(voyage.zone)) {
-    result += 4;
+    _voyageRisk += 4;
   }
-  return result;
+  return _voyageRisk;
 }
 
 function voyageRisk (voyage) {
-  let result = 1;
-  result = countResultByVoyageLength(voyage, result);
-  result = countResultByVoyageZone(voyage, result);
-  return Math.max(result, 0);
+  let _voyageRisk = 1;
+  _voyageRisk = countVoyageRiskByVoyageLength(voyage, _voyageRisk);
+  _voyageRisk = countVoyageRiskByVoyageZone(voyage, _voyageRisk);
+  return Math.max(_voyageRisk, 0);
 }
 
 function hasChina (history) {
