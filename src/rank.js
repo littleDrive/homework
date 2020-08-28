@@ -13,15 +13,20 @@ const countResultByVoyageLength = (voyage, result)  => {
   return result;
 }
 
-function voyageRisk (voyage) {
-  let result = 1;
-  result = countResultByVoyageLength(voyage, result);
+const countResultByVoyageZone = (voyage, result) => {
   if ([
     CHINA,
     EAST_INDIES,
   ].includes(voyage.zone)) {
     result += 4;
   }
+  return result;
+}
+
+function voyageRisk (voyage) {
+  let result = 1;
+  result = countResultByVoyageLength(voyage, result);
+  result = countResultByVoyageZone(voyage, result);
   return Math.max(result, 0);
 }
 
