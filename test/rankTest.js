@@ -409,3 +409,47 @@ rankTest('voyageProfitFactor case 14. should return 8 when captainHistoryRisk gi
   const result = voyageProfitFactor(voyage, history);
   t.is(result, 8);
 });
+
+rankTest('voyageProfitFactor case 15. should return 15 when captainHistoryRisk given history length=9 and include china  and voyage length=15 ', t => {
+  const voyage = {
+    zone: 'china',
+    length: 15,
+  };
+  const history = [
+    {
+      zone: 'north-africa',
+      profit: 7,
+    },
+    {
+      zone: 'west-indies',
+      profit: 5,
+    },
+    {
+      zone: 'west-indies',
+      profit: 15,
+    }, {
+      zone: 'west-indies',
+      profit: -1,
+    },
+    {
+      zone: 'west-africa',
+      profit: 7,
+    },
+    {
+      zone: 'west-indies',
+      profit: 15,
+    }, {
+      zone: 'west-indies',
+      profit: -1,
+    },
+    {
+      zone: 'west-africa',
+      profit: 7,
+    },{
+      zone: 'west-indies',
+      profit: -1,
+    }
+  ];
+  const result = voyageProfitFactor(voyage, history);
+  t.is(result, 3);
+});
