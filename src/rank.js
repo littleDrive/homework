@@ -3,14 +3,19 @@ const EAST_INDIES = 'east-indies';
 const A ='A';
 const B = 'B';
 
-function voyageRisk (voyage) {
-  let result = 1;
+const countResultByVoyageLength = (voyage, result)  => {
   if (voyage.length > 4) {
     result += 2;
   }
   if (voyage.length > 8) {
     result += voyage.length - 8;
   }
+  return result;
+}
+
+function voyageRisk (voyage) {
+  let result = 1;
+  result = countResultByVoyageLength(voyage, result);
   if ([
     CHINA,
     EAST_INDIES,
